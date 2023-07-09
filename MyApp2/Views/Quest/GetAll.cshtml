@@ -1,4 +1,39 @@
-﻿@{
-    ViewData["Title"] = "All Quests";
+﻿@model IEnumerable<MyApp2.Data.Quest>
+
+
+@{
+    ViewData["Title"] = "Все задания";
 }
 <h1>@ViewData["Title"]</h1>
+
+<div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
+     @foreach (var item in Model)
+     {
+        <div class="col">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">@item.Description</p>
+             </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Срок: @item.Overdue</li>
+            <li class="list-group-item">Цена: @item.Price</li>
+        </ul>
+        <div class="card-body">
+        <a href="/Quest/QuestDetail" class="card-link">Добавить ответ</a>
+        </div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="card-body">
+            <a href="/QuestInfo/AdminPanel" class="card-link">Оценить</a>
+            <a asp-action="EditQuest" asp-controller="Quest" asp-route-id="@item.Id">Редактировать</a>
+            <form asp-controller="Quest" asp-action="Delete" method="post" asp-route-id="@item.Id">
+            <button type="submit" class="btn btn-danger">Удалить</button>
+             </form>
+            </div>
+        }
+        
+        </div>
+        </div>
+    }
+</div>

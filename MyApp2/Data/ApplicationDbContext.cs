@@ -11,5 +11,6 @@ namespace MyApp2.Data
         }
 
         public DbSet<Quest> Tasks { get; set; }
+        public DbSet<UserAns> UsersAnswer { get; set; }
     }
 }

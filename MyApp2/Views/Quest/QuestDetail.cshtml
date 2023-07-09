@@ -1,0 +1,37 @@
+﻿@model MyApp2.Data.UserAns
+
+
+@{
+    ViewData["Title"] = "Решение задачи";
+}
+<h1>@ViewData["Title"]</h1>
+<form asp-action="create" asp-controller="home">
+    <p>
+        <label asp-for="TitleQuest">Задание</label><br />
+        <input type="text" asp-for="TitleQuest" />
+    </p>
+    
+    <p>
+        <label asp-for="Name">Имя</label><br />
+        <input type="text" asp-for="Name" />
+    </p>
+
+    <p>
+        <label asp-for="Email">Почта</label><br />
+        <input type="text" asp-for="Email" />
+    </p>
+
+    <p>
+        <label asp-for="Answer">Ответ</label><br />
+        <input type="text" asp-for="Answer" />
+    </p>
+
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Оценка: </li>
+        <li class="list-group-item">Комментарий: </li>
+    </ul>
+</form>
