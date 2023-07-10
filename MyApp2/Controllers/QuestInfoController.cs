@@ -37,13 +37,17 @@ namespace MyApp2.Controllers
             return NotFound();
         }
         [HttpPost]
-        public async Task<IActionResult> GetTaskToRate(UserAns userAns, string mark, string comment)
+        public async Task<IActionResult> GetTaskToRate(UserAns userAns)
         {
-            userAns.Mark = mark;
-            userAns.Comments = comment;
-            db.UsersAnswer.Update(userAns);
-            await db.SaveChangesAsync();
-            return View(await db.UsersAnswer.ToListAsync());
+            var dbUser = db.UsersAnswer.FirstOrDefault(s => s.Id == userAns.Id);
+            dbUser.Name = userAns.Name;
+            dbUser.Email = userAns.Email;
+            dbUser.TitleQuest = userAns.TitleQuest;
+            dbUser.Answer = userAns.Answer;
+            dbUser.Mark = userAns.Mark;
+            dbUser.Comments = userAns.Comments;
+            db.SaveChanges();
+            return RedirectToAction("AdminPanel");
         }
 
         public async Task<IActionResult> AdminPanel()
@@ -59,7 +63,7 @@ namespace MyApp2.Controllers
                 UserAns userAns = new UserAns { Id = id.Value };
                 db.Entry(userAns).State = EntityState.Deleted;
                 await db.SaveChangesAsync();
-                return RedirectToAction("GetAll");
+                return RedirectToAction("AdminPanel");
             }
 
             return NotFound();

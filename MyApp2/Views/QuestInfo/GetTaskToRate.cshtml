@@ -10,12 +10,16 @@
         <div class="col">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">@Model.TitleQuest</h5>
+                    <label asp-for="TitleQuest"></label>
+                    <input type="text" asp-for="TitleQuest" autocomplete="on" />
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Имя: @Model.Name</li>
-                    <li class="list-group-item">Почта: @Model.Email</li>
-                    <li class="list-group-item">Ответ: @Model.Answer</li>
+                    <label asp-for="Name"></label>
+                    <input type="text" asp-for="Name" autocomplete="on" />
+                    <label asp-for="Email"></label>
+                    <input type="text" asp-for="Email" autocomplete="on" />
+                    <label asp-for="Answer"></label>
+                    <input type="text" asp-for="Answer" autocomplete="on" />
                 </ul>
                 <select name="Mark">
                     <option value="00.00">00.00</option>
