@@ -1,40 +1,35 @@
-﻿@model MyApp2.Data.Quest
+﻿@model IEnumerable<MyApp2.Data.UserAns>
+
 
 @{
-    ViewData["Title"] = "Информация про задания";
+    ViewData["Title"] = "Все ответы пользователей";
 }
 <h1>@ViewData["Title"]</h1>
+<a href="/QuestInfo/CreateNewTask" class="card-link">Добавить задание</a>
 
-<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Добавить задание
-</button>
-<div class="collapse" id="collapseExample">
-    <div class="card card-body">
-        <form asp-action="AdminPanel" asp-controller="QuestInfo">
-            <p>
-                <label asp-for="Title">Название задания</label><br />
-                <input type="text" asp-for="Title" />
-            </p>
+<div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.TitleQuest</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Имя: @item.Name</li>
+                    <li class="list-group-item">Почта: @item.Email</li>
+                    <li class="list-group-item">Ответ: @item.Answer</li>
+                    <li class="list-group-item">Оценка: @item.Mark</li>
+                    <li class="list-group-item">Комментарий: @item.Comments</li>
+                </ul>
+                    <div class="card-body">
+                        <a asp-action="GetTaskToRate" asp-controller="QuestInfo" asp-route-id="@item.Id">Оценить</a>
+                        <form asp-controller="QuestInfo" asp-action="Delete" method="post" asp-route-id="@item.Id">
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </div>
 
-            <p>
-                <label asp-for="Description">Описание</label><br />
-                <input type="text" asp-for="Description" />
-            </p>
-
-            <p>
-                <label asp-for="Overdue">Срок выполнения</label><br />
-                <input type="text" asp-for="Overdue" />
-            </p>
-
-            <p>
-                <label asp-for="Price">Стоимость задания</label><br />
-                <input type="text" asp-for="Price" />
-            </p>
-
-            <p>
-                <input type="submit" value="Добавить" />
-            </p>
-        </form>
-    </div>
+            </div>
+        </div>
+    }
 </div>
-

@@ -25,7 +25,6 @@
         @if (User.IsInRole("Admin"))
         {
             <div class="card-body">
-            <a href="/QuestInfo/AdminPanel" class="card-link">Оценить</a>
             <a asp-action="EditQuest" asp-controller="Quest" asp-route-id="@item.Id">Редактировать</a>
             <form asp-controller="Quest" asp-action="Delete" method="post" asp-route-id="@item.Id">
             <button type="submit" class="btn btn-danger">Удалить</button>

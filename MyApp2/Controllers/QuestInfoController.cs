@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyApp2.Data;
 
@@ -9,30 +11,56 @@ namespace MyApp2.Controllers
     public class QuestInfoController : Controller
     {
         ApplicationDbContext db;
-        public List<Quest> myList = new List<Quest>();
-        [ActivatorUtilitiesConstructor]
-        public QuestInfoController()
-        {
-            
-        }
         public QuestInfoController(ApplicationDbContext context)
         {
             db = context;
         }
-        public IActionResult AdminPanel()
+        public IActionResult CreateNewTask()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> AdminPanel(Quest quest)
+        public async Task<IActionResult> CreateNewTask(Quest quest)
         {
             db.Tasks.Add(quest);
-            myList.Add(quest);
             await db.SaveChangesAsync();
-            return RedirectToAction("AdminPanel");
+            return RedirectToAction("CreateNewTask");
+        }
+        public async Task<IActionResult> GetTaskToRate(int? id)
+        {
+            if (id != null)
+            {
+                UserAns? userAns = await db.UsersAnswer.FirstOrDefaultAsync(p => p.Id == id);
+                if (userAns != null) return View(userAns);
+            }
+            return NotFound();
+        }
+        [HttpPost]
+        public async Task<IActionResult> GetTaskToRate(UserAns userAns)
+        {
+            db.Entry(userAns).State = EntityState.Modified;
+            db.SaveChanges();
+            return View(await db.UsersAnswer.ToListAsync());
         }
 
-        
+        public async Task<IActionResult> AdminPanel()
+        {
+            return View(await db.UsersAnswer.ToListAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id != null)
+            {
+                UserAns userAns = new UserAns { Id = id.Value };
+                db.Entry(userAns).State = EntityState.Deleted;
+                await db.SaveChangesAsync();
+                return RedirectToAction("GetAll");
+            }
+
+            return NotFound();
+        }
     }
 }

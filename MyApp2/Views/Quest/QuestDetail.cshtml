@@ -5,7 +5,7 @@
     ViewData["Title"] = "Решение задачи";
 }
 <h1>@ViewData["Title"]</h1>
-<form asp-action="create" asp-controller="home">
+<form asp-action="QuestDetail" asp-controller="Quest">
     <p>
         <label asp-for="TitleQuest">Задание</label><br />
         <input type="text" asp-for="TitleQuest" />

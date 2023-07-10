@@ -1,0 +1,38 @@
+﻿@model MyApp2.Data.UserAns
+
+
+@{
+    ViewData["Title"] = "Оценка заданий";
+}
+<h1>@ViewData["Title"]</h1>
+<form asp-action="GetTaskToRate" asp-controller="QuestInfo" asp-route-id="@Model.Id">
+<div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.TitleQuest</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Имя: @Model.Name</li>
+                    <li class="list-group-item">Почта: @Model.Email</li>
+                    <li class="list-group-item">Ответ: @Model.Answer</li>
+                </ul>
+                <select name="Mark">
+                    <option value="00.00">00.00</option>
+                    <option value="20.00">20.00</option>
+                    <option value="40.00">40.00</option>
+                    <option value="60.00">60.00</option>
+                    <option value="80.00">80.00</option>
+                    <option value="100.00">100.00</option>
+                </select>
+                <p>
+                    <label asp-for="Comments">Комментарий</label><br />
+                    <input type="text" asp-for="Comments" />
+                </p>
+                <p>
+                    <input type="submit" value="Отправить" />
+                </p>
+            </div>
+        </div>
+</div>
+</form>

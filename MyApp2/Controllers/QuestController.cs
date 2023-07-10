@@ -17,10 +17,7 @@ namespace MyApp2.Controllers
         {
             db = context;
         }
-        QuestInfoController aRef = new QuestInfoController();
-        IEnumerable<Quest> myList = new List<Quest>();
         
-
         public async Task<IActionResult> GetAll()
         {
             return View(await db.Tasks.ToListAsync());
@@ -28,14 +25,12 @@ namespace MyApp2.Controllers
 
         public IActionResult QuestDetail()
         {
-            ViewBag.Quest = new SelectList(aRef.myList, "Title");
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> QuestDetail(UserAns userAns)
         {
-            myList = aRef.myList;
             db.UsersAnswer.Add(userAns);
             await db.SaveChangesAsync();
             return RedirectToAction("GetAll");

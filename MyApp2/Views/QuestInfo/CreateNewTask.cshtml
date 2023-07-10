@@ -1,0 +1,41 @@
+﻿@model MyApp2.Data.Quest
+
+@{
+    ViewData["Title"] = "Информация про задания";
+}
+<h1>@ViewData["Title"]</h1>
+
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Добавить задание
+</button>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <form asp-action="CreateNewTask" asp-controller="QuestInfo">
+            <p>
+                <label asp-for="Title">Название задания</label><br />
+                <input type="text" asp-for="Title" />
+            </p>
+
+            <p>
+                <label asp-for="Description">Описание</label><br />
+                <input type="text" asp-for="Description" />
+            </p>
+
+            <p>
+                <label asp-for="Overdue">Срок выполнения</label><br />
+                <input type="text" asp-for="Overdue" />
+            </p>
+
+            <p>
+                <label asp-for="Price">Стоимость задания</label><br />
+                <input type="text" asp-for="Price" />
+            </p>
+
+            <p>
+                <input type="submit" value="Добавить" />
+            </p>
+        </form>
+    </div>
+</div>
+
+

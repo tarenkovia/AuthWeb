@@ -9,7 +9,7 @@
 <form asp-action="EditQuest" asp-controller="Quest" asp-route-id="@Model.Id">
     <p>
         <label asp-for="Title"></label>
-        <select asp-for="Title" asp-items="Html.GetEnumSelectList(typeof(MyApp2.Data.Quest))" />
+        <input type="text" asp-for="Title" />
     </p>
 
     <p>
