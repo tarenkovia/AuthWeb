@@ -37,10 +37,12 @@ namespace MyApp2.Controllers
             return NotFound();
         }
         [HttpPost]
-        public async Task<IActionResult> GetTaskToRate(UserAns userAns)
+        public async Task<IActionResult> GetTaskToRate(UserAns userAns, string mark, string comment)
         {
-            db.Entry(userAns).State = EntityState.Modified;
-            db.SaveChanges();
+            userAns.Mark = mark;
+            userAns.Comments = comment;
+            db.UsersAnswer.Update(userAns);
+            await db.SaveChangesAsync();
             return View(await db.UsersAnswer.ToListAsync());
         }
 
