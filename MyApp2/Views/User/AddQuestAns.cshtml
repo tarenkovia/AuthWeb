@@ -1,0 +1,32 @@
+﻿@model MyApp2.Models.QuestCreateViewModel
+
+
+@{
+    ViewData["Title"] = "Решение задачи";
+}
+<h1>@ViewData["Title"]</h1>
+<form asp-action="AddQuestAns" asp-controller="User">
+    <p>
+        <label asp-for="UserAnswer.TitleQuest">Задание</label><br />
+        <select asp-for="UserAnswer.TitleQuest" asp-items="Model.Titles"></select>
+    </p>
+    
+    <p>
+        <label asp-for="UserAnswer.Name">Имя</label><br />
+        <input type="text" asp-for="UserAnswer.Name" />
+    </p>
+
+    <p>
+        <label asp-for="UserAnswer.Email">Почта</label><br />
+        <input type="text" asp-for="UserAnswer.Email" />
+    </p>
+
+    <p>
+        <label asp-for="UserAnswer.Answer">Ответ</label><br />
+        <input type="text" asp-for="UserAnswer.Answer" />
+    </p>
+
+    <p>
+        <input type="submit" value="Отправить" />
+    </p>
+</form>

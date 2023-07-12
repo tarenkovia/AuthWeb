@@ -5,7 +5,7 @@
     ViewData["Title"] = "Оценка заданий";
 }
 <h1>@ViewData["Title"]</h1>
-<form asp-action="GetTaskToRate" asp-controller="QuestInfo" asp-route-id="@Model.Id">
+<form asp-action="GetQuestToRate" asp-controller="Admin" asp-route-id="@Model.Id">
 <div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
         <div class="col">
             <div class="card" style="width: 18rem;">

@@ -5,7 +5,7 @@
     ViewData["Title"] = "Все ответы пользователей";
 }
 <h1>@ViewData["Title"]</h1>
-<a href="/QuestInfo/CreateNewTask" class="card-link">Добавить задание</a>
+<a href="/Admin/CreateNewQuest" class="card-link">Добавить задание</a>
 
 <div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
     @foreach (var item in Model)
@@ -23,9 +23,9 @@
                     <li class="list-group-item">Комментарий: @item.Comments</li>
                 </ul>
                     <div class="card-body">
-                        <a asp-action="GetTaskToRate" asp-controller="QuestInfo" asp-route-id="@item.Id">Оценить</a>
-                        <form asp-controller="QuestInfo" asp-action="Delete" method="post" asp-route-id="@item.Id">
-                            <button type="submit" class="btn btn-danger">Удалить</button>
+                    <a asp-action="GetQuestToRate" asp-controller="Admin" asp-route-id="@item.Id">Оценить</a>
+                    <form asp-controller="Admin" asp-action="DeleteUserAns" method="post" asp-route-id="@item.Id">
+                            <button type="submit" class="btn btn-danger">Удалить ответ пользователя</button>
                         </form>
                     </div>
 

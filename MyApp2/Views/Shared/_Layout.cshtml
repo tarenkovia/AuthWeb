@@ -25,13 +25,13 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Quest" asp-action="GetAll">Все задания</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="GetAllQuests">Все задания</a>
                             </li>
                         }
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="QuestInfo" asp-action="AdminPanel">Панель администратора</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminPanel">Панель администратора</a>
                             </li>
                         }
                     </ul>

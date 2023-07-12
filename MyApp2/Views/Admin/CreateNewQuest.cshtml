@@ -1,7 +1,7 @@
 ﻿@model MyApp2.Data.Quest
 
 @{
-    ViewData["Title"] = "Информация про задания";
+    ViewData["Title"] = "Создание нового задания";
 }
 <h1>@ViewData["Title"]</h1>
 
@@ -10,7 +10,7 @@
 </button>
 <div class="collapse" id="collapseExample">
     <div class="card card-body">
-        <form asp-action="CreateNewTask" asp-controller="QuestInfo">
+        <form asp-action="CreateNewQuest" asp-controller="Admin">
             <p>
                 <label asp-for="Title">Название задания</label><br />
                 <input type="text" asp-for="Title" />
