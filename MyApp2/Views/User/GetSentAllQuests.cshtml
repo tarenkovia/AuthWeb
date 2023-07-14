@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MyApp2.Data.UserAns>
+
+
+@{
+    ViewData["Title"] = "Отправленные задания";
+}
+<h1>@ViewData["Title"]</h1>
+<div class="btn-group">
+    <a href="/User/GetAllQuests" class="btn btn-primary">Список доступный заданий</a>
+    <a href="/User/GetSentAllQuests" class="btn btn-primary active" aria-current="page">Отправленные</a>
+</div>
+<div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.TitleQuest</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Срок: @item.Answer</li>
+                    @if(item.Mark != null)
+                    {
+                        <li class="list-group-item">Цена: @item.Mark</li>
+                        <li class="list-group-item">Цена: @item.Comments</li>
+                    }
+                    else
+                    {
+                        <li class="list-group-item">Не проверено</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+</div>

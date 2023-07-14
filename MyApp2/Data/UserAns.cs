@@ -7,6 +7,7 @@ namespace MyApp2.Data
     {
         public int Id { get; set; }
         public int QuestId { get; set; }
+        public string? UserId { get; set; }
         public string? TitleQuest { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }

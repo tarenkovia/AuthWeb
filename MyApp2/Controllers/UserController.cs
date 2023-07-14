@@ -1,11 +1,13 @@
 ﻿using Elfie.Serialization;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyApp2.Data;
 using MyApp2.Models;
 using System.Net;
+using System.Security.Claims;
 using System.Security.Cryptography.Xml;
 
 namespace MyApp2.Controllers
@@ -21,7 +23,7 @@ namespace MyApp2.Controllers
         
         public async Task<IActionResult> GetAllQuests()
         {
-            var model = (from m in db.Tasks
+            /*var model = (from m in db.Tasks
                          join t in db.UsersAnswer
                          on m.Id equals t.QuestId
                          select new AllQuestsVeiwModel
@@ -38,8 +40,16 @@ namespace MyApp2.Controllers
                              Mark = t.Mark,
                              Comments = t.Comments,
                              AnsReceived = t.AnsReceived
-                         }).ToList();
-            return View(model);
+                         }).ToList();*/
+            return View(await db.Tasks.ToListAsync());
+        }
+
+        public async Task<IActionResult> GetSentAllQuests()
+        {
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var items = await db.UsersAnswer.Where(f => f.UserId == currentUserID).AsNoTracking().ToListAsync();
+            return View(items);
         }
 
         public IActionResult AddQuestAns()
@@ -57,9 +67,12 @@ namespace MyApp2.Controllers
         [HttpPost]
         public async Task<IActionResult> AddQuestAns(QuestCreateViewModel model)
         {
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
             var questId = (from b in db.Tasks where b.Title == model.UserAnswer.TitleQuest select b.Id).FirstOrDefault();
             model.UserAnswer.QuestId = questId;
             model.UserAnswer.AnsReceived = true;
+            model.UserAnswer.UserId = currentUserID;
             db.UsersAnswer.Add(model.UserAnswer);
             await db.SaveChangesAsync();
             return RedirectToAction("GetAllQuests");

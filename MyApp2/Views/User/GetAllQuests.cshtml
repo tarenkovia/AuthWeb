@@ -1,63 +1,41 @@
-﻿@model IEnumerable<MyApp2.Models.AllQuestsVeiwModel>
+﻿@model IEnumerable<MyApp2.Data.Quest>
 
 
 @{
     ViewData["Title"] = "Все задания";
 }
 <h1>@ViewData["Title"]</h1>
+<div class="btn-group">
+    <a href="/User/GetAllQuests" class="btn btn-primary active" aria-current="page">Список доступный заданий</a>
+    <a href="/User/GetSentAllQuests" class="btn btn-primary">Отправленные</a>
+</div>
 <div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
 @foreach(var item in Model)
-{
-        @if(item.AnsReceived == true)
-        {
-            <div class="col">
-                <div class="card" style="width: 18rem;">
+    {
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">@item.Description</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Срок: @item.Overdue</li>
+                    <li class="list-group-item">Цена: @item.Price</li>
+                </ul>
+                <div class="card-body">
+                    <a href="/User/AddQuestAns" class="card-link">Добавить ответ</a>
+                </div>
+                @if (User.IsInRole("Admin"))
+                {
                     <div class="card-body">
-                        <h5 class="card-title">@item.TitleQuest</h5>
-                        <p class="card-text">@item.Description</p>
+                        <a asp-action="EditQuest" asp-controller="Admin" asp-route-id="@item.Id">Редактировать</a>
+                        <form asp-controller="User" asp-action="DeleteQuest" method="post" asp-route-id="@item.Id">
+                            <button type="submit" class="btn btn-danger">Удалить задание</button>
+                        </form>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Ваш ответ: @item.Answer</li>
-                    </ul>
-                        @if (item.Mark == null)
-                        {
-                            <dl> Пока не оценено </dl>
-                        }
-                        else{
-                            <dl> Ваша оценка: @item.Mark </dl>
-                            <dl> Комментарий куратора: @item.Comments </dl>
-                        }
-                </div>
+                }
+
             </div>
-        }
-        else
-        {
-                <div class="col">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">@item.Title</h5>
-                            <p class="card-text">@item.Description</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Срок: @item.Overdue</li>
-                            <li class="list-group-item">Цена: @item.Price</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="/User/AddQuestAns" class="card-link">Добавить ответ</a>
-                        </div>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <div class="card-body">
-                                <a asp-action="EditQuest" asp-controller="Admin" asp-route-id="@item.Id">Редактировать</a>
-                                <form asp-controller="User" asp-action="DeleteQuest" method="post" asp-route-id="@item.Id">
-                                    <button type="submit" class="btn btn-danger">Удалить задание</button>
-                                </form>
-                            </div>
-                        }
-
-                    </div>
-                </div>
-            }
-
-}
+        </div>
+    }
 </div>
