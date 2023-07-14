@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyApp2.Data;
+using MyApp2.Services;
 
 namespace MyApp2.Controllers
 {
@@ -11,6 +13,7 @@ namespace MyApp2.Controllers
     public class AdminController : Controller
     {
         ApplicationDbContext db;
+        private readonly IFileService _fileService;
         public AdminController(ApplicationDbContext context)
         {
             db = context;
@@ -23,6 +26,7 @@ namespace MyApp2.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNewQuest(Quest quest)
         {
+            
             db.Tasks.Add(quest);
             await db.SaveChangesAsync();
             return RedirectToAction("CreateNewQuest");

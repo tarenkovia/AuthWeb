@@ -5,13 +5,16 @@
     ViewData["Title"] = "Отправленные задания";
 }
 <h1>@ViewData["Title"]</h1>
+<div class="row gy-1" style="width:95%">
 <div class="btn-group">
-    <a href="/User/GetAllQuests" class="btn btn-primary">Список доступный заданий</a>
+    <a href="/User/GetAllQuests" class="btn btn-primary">Список доступных заданий</a>
     <a href="/User/GetSentAllQuests" class="btn btn-primary active" aria-current="page">Отправленные</a>
+</div>
 </div>
 <div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
     @foreach (var item in Model)
     {
+        <div class="row gy-3">
         <div class="col">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -30,6 +33,7 @@
                     }
                 </ul>
             </div>
+        </div>
         </div>
     }
 </div>
