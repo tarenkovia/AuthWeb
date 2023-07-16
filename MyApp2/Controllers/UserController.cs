@@ -73,6 +73,17 @@ namespace MyApp2.Controllers
             model.UserAnswer.QuestId = questId;
             model.UserAnswer.AnsReceived = true;
             model.UserAnswer.UserId = currentUserID;
+            model.UserAnswer.DepartureDate = DateTime.Now;
+            var overdue = (from b in db.Tasks where b.Title == model.UserAnswer.TitleQuest select b.Overdue).FirstOrDefault();
+            if(overdue < model.UserAnswer.DepartureDate)
+            {
+                model.UserAnswer.IsOverdue = false;
+            }
+            else
+            {
+                model.UserAnswer.IsOverdue = true;
+            }
+
             db.UsersAnswer.Add(model.UserAnswer);
             await db.SaveChangesAsync();
             return RedirectToAction("GetAllQuests");

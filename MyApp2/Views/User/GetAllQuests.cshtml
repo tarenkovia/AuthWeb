@@ -15,6 +15,7 @@
 @foreach(var item in Model)
     {
         <div class="row gy-3">
+        <div class="hover-effect2">
         <div class="col">
             <div class="card" style="width: 18rem;">
                 <div class="center">
@@ -36,7 +37,7 @@
                     <div class="card-body">
                         <a asp-action="EditQuest" asp-controller="Admin" asp-route-id="@item.Id">Редактировать</a>
                         <form asp-controller="User" asp-action="DeleteQuest" method="post" asp-route-id="@item.Id">
-                            <button type="submit" class="btn btn-danger">Удалить задание</button>
+                        <button type="submit" class="btn btn-warning"> <i class="fa fa-trash"></i> Удалить задание</button>
                         </form>
                     </div>
                 }
@@ -44,5 +45,8 @@
             </div>
         </div>
         </div>
+        </div>
     }
 </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

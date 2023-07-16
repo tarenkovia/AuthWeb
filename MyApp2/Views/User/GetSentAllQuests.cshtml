@@ -15,25 +15,25 @@
     @foreach (var item in Model)
     {
         <div class="row gy-3">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">@item.TitleQuest</h5>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.TitleQuest</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Срок: @item.Answer</li>
+                        @if (item.Mark != null)
+                        {
+                            <li class="list-group-item">Цена: @item.Mark</li>
+                            <li class="list-group-item">Цена: @item.Comments</li>
+                        }
+                        else
+                        {
+                            <li class="list-group-item">Не проверено</li>
+                        }
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Срок: @item.Answer</li>
-                    @if(item.Mark != null)
-                    {
-                        <li class="list-group-item">Цена: @item.Mark</li>
-                        <li class="list-group-item">Цена: @item.Comments</li>
-                    }
-                    else
-                    {
-                        <li class="list-group-item">Не проверено</li>
-                    }
-                </ul>
             </div>
-        </div>
         </div>
     }
 </div>
