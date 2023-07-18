@@ -1,4 +1,11 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿let switchMode = document.getElementById("switchMode");
 
-// Write your JavaScript code.
+switchMode.onclick = function () {
+	let theme = document.getElementById("theme")
+
+	if (theme.getAttribute("href") = "~/css/light-mode.css") {
+		theme.href = "~/css/dark-mode.css"
+	} else {
+		theme.href = "~/css/light-mode.css"
+	}
+}

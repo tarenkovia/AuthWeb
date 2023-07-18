@@ -7,8 +7,8 @@
 <h1>@ViewData["Title"]</h1>
 <div class="row gy-1" style="width:95%">
 <div class="btn-group">
-    <a href="/User/GetAllQuests" class="btn btn-primary">Список доступных заданий</a>
-    <a href="/User/GetSentAllQuests" class="btn btn-primary active" aria-current="page">Отправленные</a>
+        <a href="/User/GetAllQuests" class="btn btn-pr">Список доступных заданий</a>
+        <a href="/User/GetSentAllQuests" class="btn btn-pr active" aria-current="page">Отправленные</a>
 </div>
 </div>
 <div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
@@ -17,19 +17,27 @@
         <div class="row gy-3">
             <div class="col">
                 <div class="card" style="width: 18rem;">
+                    @if (item.Mark == null)
+                    {
+                        <img src="/uploads/waiting.gif" style="width:100%; height:180px" />
+                    }
+                    else
+                    {
+                        <img src="/uploads/complete.gif" style="width:100%; height:180px" />
+                    }
                     <div class="card-body">
-                        <h5 class="card-title">@item.TitleQuest</h5>
+                        <h5 class="card-title"><strong>@item.TitleQuest</strong></h5>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">@item.Answer</li>
+                        <li class="list-group-item">Ваш ответ: @item.Answer</li>
                         @if (item.Mark != null)
                         {
-                            <li class="list-group-item">Цена: @item.Mark</li>
-                            <li class="list-group-item">Цена: @item.Comments</li>
+                            <li class="list-group-item"><strong>Оценка:</strong> @item.Mark</li>
+                            <li class="list-group-item"><strong>Комментарий куратора:</strong> @item.Comments</li>
                         }
                         else
                         {
-                            <li class="list-group-item">Не проверено</li>
+                            <li class="list-group-item"><strong>Ожидает проверки</strong></li>
                         }
                     </ul>
                 </div>

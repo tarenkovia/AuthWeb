@@ -70,6 +70,10 @@ namespace MyApp2.Controllers
             ClaimsPrincipal currentUser = this.User;
             var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
             var questId = (from b in db.Tasks where b.Title == model.UserAnswer.TitleQuest select b.Id).FirstOrDefault();
+            var email = (from e in db.Users where e.Id == currentUserID select e.Email).FirstOrDefault();
+            var userName = (from e in db.Users where e.Id == currentUserID select e.Name).FirstOrDefault();
+            model.UserAnswer.Email = email;
+            model.UserAnswer.Name = userName;
             model.UserAnswer.QuestId = questId;
             model.UserAnswer.AnsReceived = true;
             model.UserAnswer.UserId = currentUserID;

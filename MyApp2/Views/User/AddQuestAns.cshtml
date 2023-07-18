@@ -5,28 +5,30 @@
     ViewData["Title"] = "Решение задачи";
 }
 <h1>@ViewData["Title"]</h1>
-<form asp-action="AddQuestAns" asp-controller="User">
-    <p>
-        <label asp-for="UserAnswer.TitleQuest">Задание</label><br />
-        <select asp-for="UserAnswer.TitleQuest" asp-items="Model.Titles"></select>
-    </p>
-    
-    <p>
-        <label asp-for="UserAnswer.Name">Имя</label><br />
-        <input type="text" asp-for="UserAnswer.Name" />
-    </p>
-
-    <p>
-        <label asp-for="UserAnswer.Email">Почта</label><br />
-        <input type="text" asp-for="UserAnswer.Email" />
-    </p>
-
-    <p>
-        <label asp-for="UserAnswer.Answer">Ответ</label><br />
-        <input type="text" asp-for="UserAnswer.Answer" />
-    </p>
-
-    <p>
-        <input type="submit" value="Отправить" />
-    </p>
-</form>
+<div class="card text-center">
+    <form asp-action="AddQuestAns" asp-controller="User">
+        <div class="row">
+            <div class="col">
+                <img src="/uploads/programming.gif" style="width:100%; height:100%" />
+            </div>
+            <div class="col">
+                <div class="card" style="width:100%; height:100%">
+                    <div class="card-body">
+                        <label asp-for="UserAnswer.TitleQuest" class="card-title"><strong>Выберите задание:</strong></label><br />
+                        <select asp-for="UserAnswer.TitleQuest" asp-items="Model.Titles"></select>
+                        <p></p>
+                        <label asp-for="UserAnswer.Answer" class="card-text">Ваш ответ</label><br />
+                        <textarea type="text" asp-for="UserAnswer.Answer" style="width:400px;"></textarea>
+                        <p class="card-text"><small class="text-muted">Обратите внимание на сроки вылолнения задач!</small></p>
+                        <p>
+                            <input type="submit" value="Отправить" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <img src="/uploads/programming2.gif" style="width:100%; height:100%" />
+            </div>
+        </div>
+    </form>
+</div>

@@ -6,45 +6,49 @@
 }
 <h1>@ViewData["Title"]</h1>
 <div class="row gy-1" style="width:95%">
-<div class="btn-group">
-    <a href="/User/GetAllQuests" class="btn btn-primary active" aria-current="page">Список доступных заданий</a>
-    <a href="/User/GetSentAllQuests" class="btn btn-primary">Отправленные</a>
-</div>
+    <div class="btn-group">
+        <a href="/User/GetAllQuests" class="btn btn-pr active" aria-current="page">Список доступных заданий</a>
+        <a href="/User/GetSentAllQuests" class="btn btn-pr">Отправленные</a>
+    </div>
 </div>
 <div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
-@foreach(var item in Model)
+@foreach (var item in Model)
     {
         <div class="row gy-3">
-        <div class="hover-effect2">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="center">
-                    <img src="/uploads/code.jpg" style="width:100%; height:100px" />
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">@item.Title</h5>
-                    <p class="card-text">@item.Description</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Срок: @item.Overdue</li>
-                    <li class="list-group-item">Цена: @item.Price</li>
-                </ul>
-                <div class="card-body">
-                    <a href="/User/AddQuestAns" class="card-link">Добавить ответ</a>
-                </div>
-                @if (User.IsInRole("Admin"))
-                {
-                    <div class="card-body">
-                        <a asp-action="EditQuest" asp-controller="Admin" asp-route-id="@item.Id">Редактировать</a>
-                        <form asp-controller="User" asp-action="DeleteQuest" method="post" asp-route-id="@item.Id">
-                        <button type="submit" class="btn btn-warning"> <i class="fa fa-trash"></i> Удалить задание</button>
-                        </form>
+            <div class="hover-effect2">
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <div class="center">
+                            <img src="/uploads/code2.jpg" style="width:100%; height:180px" />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>@item.Title</strong></h5>
+                            <p class="card-text">@item.Description</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><ins>◷</ins> @item.Overdue</li>
+                            <li class="list-group-item">@item.Price <ins>₽</ins></li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="/User/AddQuestAns" class="btn btn-addAns">Добавить ответ</a>
+                        </div>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <hr />
+                            <div class="row">
+                                <div class="col">
+                                    <a asp-action="EditQuest" asp-controller="Admin" asp-route-id="@item.Id" class="btn btn-pr1" title="Редактировать">Редактировать</a>
+                                </div>
+                                <div class="col">
+                                    <form asp-controller="User" asp-action="DeleteQuest" method="post" asp-route-id="@item.Id">
+                                        <button type="submit" class="btn btn-warning1">Удалить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        }
                     </div>
-                }
-
+                </div>
             </div>
-        </div>
-        </div>
         </div>
     }
 </div>
