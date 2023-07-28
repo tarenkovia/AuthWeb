@@ -106,22 +106,6 @@ namespace MyApp2.Controllers
             return NotFound();
         }
 
-        public async Task<IActionResult> EditQuest(int? id)
-        {
-            if (id != null)
-            {
-                Quest? quest = await db.Tasks.FirstOrDefaultAsync(p => p.Id == id);
-                if (quest != null) return View(quest);
-            }
-            return NotFound();
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> EditQuest(Quest quest)
-        {
-            db.Tasks.Update(quest);
-            await db.SaveChangesAsync();
-            return RedirectToAction("GetAllQuests");
-        }
     }
 }
