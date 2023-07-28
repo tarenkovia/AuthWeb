@@ -73,7 +73,5 @@ namespace MyApp2.Controllers
 
             return NotFound();
         }
-
-        
     }
 }
