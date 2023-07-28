@@ -5,36 +5,49 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Добавить задание
-</button>
-<div class="collapse" id="collapseExample">
-    <div class="card card-body">
+<div class="card text-center">
+    <div class="card-header">
+        Форма заполнения задания
+    </div>
+    <div class="card-body">
         <form asp-action="CreateNewQuest" asp-controller="Admin">
-            <p>
-                <label class="p1" asp-for="Title">Название задания</label><br />
-                <input type="text" asp-for="Title" />
-            </p>
+            <div class="row">
+                <div class="col">
+                    <img src="/uploads/programming3.gif" style="width:100%; height:100%" />
+                </div>
+                <div class="col">
+                    <p>
+                        <label class="p1" asp-for="Title">Название задания</label><br />
+                        <input type="text" asp-for="Title" />
+                    </p>
 
-            <p>
-                <label asp-for="Description">Описание</label><br />
-                <input type="text" asp-for="Description" />
-            </p>
+                    <p>
+                        <label asp-for="Description">Описание</label><br />
+                        <input type="text" asp-for="Description" />
+                    </p>
 
-            <p>
-                <label asp-for="Overdue">Срок выполнения</label><br />
-                <input type="text" asp-for="Overdue" />
-            </p>
+                    <p>
+                        <label asp-for="Overdue">Срок выполнения</label><br />
+                        <input type="text" asp-for="Overdue" />
+                    </p>
 
-            <p>
-                <label asp-for="Price">Стоимость задания</label><br />
-                <input type="text" asp-for="Price" />
-            </p>
+                    <p>
+                        <label asp-for="Price">Стоимость задания</label><br />
+                        <input type="text" asp-for="Price" />
+                    </p>
 
-            <p>
-                <input type="submit" value="Добавить" />
-            </p>
+                    <p>
+                        <input type="submit" value="Добавить" />
+                    </p>
+                </div>
+                <div class="col">
+                    <img src="/uploads/programming4.gif" style="width:100%; height:100%" />
+                </div>
+            </div>
         </form>
+    </div>
+    <div class="card-footer text-muted">
+        Хорошего дня!
     </div>
 </div>
 

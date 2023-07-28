@@ -5,38 +5,53 @@
     ViewData["Title"] = "Оценка заданий";
 }
 <h1>@ViewData["Title"]</h1>
-<form asp-action="GetQuestToRate" asp-controller="Admin" asp-route-id="@Model.Id">
-<div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <label asp-for="TitleQuest"></label>
-                    <input type="text" asp-for="TitleQuest" autocomplete="on" />
+<div class="card text-center">
+    <div class="card-header">
+        Форма оценки задания
+    </div>
+    <div class="card-body">
+        <form asp-action="GetQuestToRate" asp-controller="Admin" asp-route-id="@Model.Id">
+            <div class="row">
+                <div class="col">
+                    <img src="/uploads/programming3.gif" style="width:100%; height:100%" />
                 </div>
-                <ul class="list-group list-group-flush">
-                    <label asp-for="Name"></label>
-                    <input type="text" asp-for="Name" autocomplete="on" />
-                    <label asp-for="Email"></label>
-                    <input type="text" asp-for="Email" autocomplete="on" />
-                    <label asp-for="Answer"></label>
-                    <input type="text" asp-for="Answer" autocomplete="on" />
-                </ul>
-                <select name="Mark">
-                    <option value="00.00">00.00</option>
-                    <option value="20.00">20.00</option>
-                    <option value="40.00">40.00</option>
-                    <option value="60.00">60.00</option>
-                    <option value="80.00">80.00</option>
-                    <option value="100.00">100.00</option>
-                </select>
-                <p>
-                    <label asp-for="Comments">Комментарий</label><br />
-                    <input type="text" asp-for="Comments" />
-                </p>
-                <p>
-                    <input type="submit" value="Отправить" />
-                </p>
+                <div class="col">
+                    <div class="card-body">
+                        <label asp-for="TitleQuest">Название задания</label><br>
+                        <input type="text" asp-for="TitleQuest" autocomplete="on" />
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <label asp-for="Name">Имя пользователя</label>
+                        <input type="text" asp-for="Name" autocomplete="on" />
+                        <label asp-for="Email">Почта пользователя</label>
+                        <input type="text" asp-for="Email" autocomplete="on" />
+                        <label asp-for="Answer">Ответ пользователя</label>
+                        <input type="text" asp-for="Answer" autocomplete="on" />
+                    </ul>
+                    <p1>Оценка</p1><br>
+                    <select name="Mark">
+                        <option value="00.00">00.00</option>
+                        <option value="20.00">20.00</option>
+                        <option value="40.00">40.00</option>
+                        <option value="60.00">60.00</option>
+                        <option value="80.00">80.00</option>
+                        <option value="100.00">100.00</option>
+                    </select>
+                    <p>
+                        <label asp-for="Comments">Комментарий</label><br />
+                        <textarea type="text" asp-for="Comments" style="width:400px;"></textarea>
+                    </p>
+                    <p>
+                        <input type="submit" value="Отправить" />
+                    </p>
+                </div>
+                <div class="col">
+                    <img src="/uploads/programming4.gif" style="width:100%; height:100%" />
+                </div>
             </div>
-        </div>
+        </form>
+    </div>
+    <div class="card-footer text-muted">
+        Хорошего дня!
+    </div>
 </div>
-</form>

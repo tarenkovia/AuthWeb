@@ -11,6 +11,10 @@ p{
 	color: #fff;
 }
 
+p1{
+	color: #000;
+}
+
 .card-text{
 	color: #000;
 }
@@ -32,7 +36,7 @@ label{
 	border-radius: 10px;
 }
 
-.btn.btn-addAns:hover {
+.btn-addAns:hover {
 	color: #ebebeb;
 	background-color: #501B99;
 }
