@@ -123,5 +123,6 @@ namespace MyApp2.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("GetAllQuests");
         }
+
     }
 }
